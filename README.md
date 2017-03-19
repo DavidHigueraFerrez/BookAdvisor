@@ -1,5 +1,5 @@
 # BookAdvisor
-BookAdvisor for reviews
+BookAdvisor is a website for exchange opinions about books, and a website that allows Libraries, Editorial.
 
 This is the main proyect code of ISST for Bookadvisor.
 

@@ -5,14 +5,47 @@ xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
 xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
 http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
 	<servlet>
-		<servlet-name>BookAdvisor_isst</servlet-name>
-		<servlet-class>es.upm.dit.isst.BookAdvisor_isstServlet</servlet-class>
+		<servlet-name>Main</servlet-name>
+		<servlet-class>es.upm.dit.isst.MainServlet</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>Books</servlet-name>
+		<servlet-class>es.upm.dit.isst.BooksDashboard</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>AddBook</servlet-name>
+		<servlet-class>es.upm.dit.isst.AddBook</servlet-class>
 	</servlet>
 	<servlet-mapping>
-		<servlet-name>BookAdvisor_isst</servlet-name>
-		<url-pattern>/bookadvisor_isst</url-pattern>
+		<servlet-name>Main</servlet-name>
+		<url-pattern>/</url-pattern>
 	</servlet-mapping>
+	<servlet>
+		<servlet-name>RemoveBook</servlet-name>
+		<servlet-class>es.upm.dit.isst.RemoveBook</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>RemoveBook</servlet-name>
+		<url-pattern>/eliminalibro</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>AllBooks</servlet-name>
+		<servlet-class>es.upm.dit.isst.AllBooksDashboard</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>AllBooks</servlet-name>
+		<url-pattern>/books</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Books</servlet-name>
+		<url-pattern>/mybooks</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>AddBook</servlet-name>
+		<url-pattern>/nuevolibro</url-pattern>
+	</servlet-mapping>
+
 	<welcome-file-list>
-		<welcome-file>index.html</welcome-file>
+		<welcome-file>Main</welcome-file>
 	</welcome-file-list>
 </web-app>

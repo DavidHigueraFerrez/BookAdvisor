@@ -12,7 +12,7 @@ import com.google.appengine.api.users.User;
 
 import es.upm.dit.isst.books.dao.EMFService;
 import es.upm.dit.isst.books.model.Book;
-import es.upm.dit.isst.books.model.Resena;
+import es.upm.dit.isst.resena.model.Resena;
 
 
 public class BookDAOImpl implements BookDAO {

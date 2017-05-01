@@ -9,7 +9,7 @@ import com.google.appengine.api.images.Image;
 import com.google.appengine.api.users.User;
 
 import es.upm.dit.isst.books.model.Book;
-import es.upm.dit.isst.books.model.Resena;
+import es.upm.dit.isst.resena.model.Resena;
 
 public interface BookDAO {
 

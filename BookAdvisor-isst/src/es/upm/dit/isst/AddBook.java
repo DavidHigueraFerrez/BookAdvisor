@@ -22,7 +22,7 @@ import com.google.appengine.api.users.UserServiceFactory;
 import es.upm.dit.isst.books.dao.BookDAO;
 import es.upm.dit.isst.books.dao.BookDAOImpl;
 import es.upm.dit.isst.books.model.Book;
-import es.upm.dit.isst.books.model.Resena;
+import es.upm.dit.isst.resena.model.Resena;
 
 public class AddBook extends HttpServlet{
 	

@@ -56,10 +56,16 @@
 										</div>
 										<div class="12u$">
 										<select name="available" id="available" required>
-													<option value="0">- ¿Lo tienes para compartirlo? -</option>
+													<option value="0">- ¿Disponible para compartirlo? -</option>
 													<option value="1">Si</option>
 													<option value="0">No</option>
 										</select>
+										</div>
+										<div class="12u$">
+											<input type="text" name="direccion" id="direccion" value="" placeholder="Añade la dirección de la biblioteca" required>
+										</div>
+										<div class="12u$">
+											<input type="text" name="urlparam" id="urlparam" value="" placeholder="Añade la URL de la biblioteca" required>
 										</div>
 										<div class="12u$">
 											<textarea name="description" id="description" placeholder="Añade una descripción" rows="6"></textarea>

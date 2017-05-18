@@ -39,10 +39,14 @@ public class AddBook extends HttpServlet{
 		User editorial = userService.getCurrentUser();
 		String title = checkNull(req.getParameter("title"));
 		String Description = checkNull(req.getParameter("description"));
+		String availablenum = req.getParameter("available");
 		String autor = checkNull(req.getParameter("autor"));
 		String portada = req.getParameter("image");
 		String isbn = checkNull(req.getParameter("isbn"));
 		String category = req.getParameter("category");
+		String urlparam = req.getParameter("urlparam");
+		String price = req.getParameter("price");
+		String ubicacion = req.getParameter("direccion");
 		DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
 		Date date = new Date();
 		System.out.println(dateFormat.format(date));
@@ -55,8 +59,17 @@ public class AddBook extends HttpServlet{
 			promoted = true;
 		}			
 		else {promoted = false;}
-		dao.add(title, Description, editorial, autor, fecha, portada, category, isbn, promoted);
-		System.out.println("añadido libro con titulo y descrip:"+title+" "+Description+" y USer:"+editorial+ autor+ fecha+ portada+ category+ isbn+promoted);
+		boolean available = false;
+		System.out.println(availablenum);
+		int available1 = Integer.parseInt(availablenum);
+		if (available1 == 1){
+			available = true;
+		}
+		if(available1 == 0) {
+			available = false;
+		}
+		dao.add(title, Description, editorial, autor, fecha, portada, category, isbn, promoted, available, urlparam, price, ubicacion);
+		System.out.println("añadido libro con titulo y descrip:"+title+" "+Description+" y USer:"+editorial+ autor+ fecha+ portada+ category+ isbn+promoted+available+ urlparam+ price+ubicacion);
 		PrintWriter out = resp.getWriter();
 		req.getSession().setAttribute("dialogo", "Oferta creada Correctamente!");
 
@@ -83,9 +96,27 @@ public class AddBook extends HttpServlet{
 		if (user == null){
 			resp.sendRedirect("/"); //si no estoy logueado me devuelve al inicio
 			
-		} else{
-			RequestDispatcher view = req.getRequestDispatcher("AddBook.jsp");
-	        view.forward(req, resp);
+		} if(user != null){
+			UserDAO appUserDAO = UserDAOImpl.getInstance();
+		    AppUser appUser = appUserDAO.getUser(user.getUserId());
+		    int type = appUser.getType();
+		    //Type = 1 common
+			//Type = 2 biblioteca
+			//Type = 3 libreria
+			//Type = 4 editorial
+		    if (type == 3 || type == 4){
+		    	RequestDispatcher view = req.getRequestDispatcher("AddBookPago.jsp");
+		        view.forward(req, resp);
+		    }
+		    if (type == 2){
+		    	RequestDispatcher view = req.getRequestDispatcher("AddBookBiblio.jsp");
+		        view.forward(req, resp);
+		    }
+		    if(type == 1){
+		    	RequestDispatcher view = req.getRequestDispatcher("AddBook.jsp");
+		        view.forward(req, resp);
+		    }
+
 		}
 		
 		

@@ -44,6 +44,17 @@
 							<p title="${books.isbn}"><strong>ISBN: </strong><c:out value="${books.isbn}" /></p>
 						</div>
 					<div class="col-md-12 offer text-left">
+					<c:if test="${books.promoted}">
+					<p><strong>Precio de venta: </strong><c:out value="${books.price}" /></p>
+					<p><a href="<c:url value="${books.url}"/>"><strong>Link de compra </strong></a></p>
+					<p><strong>Ubicación: </strong><c:out value="${books.ubicacion}" /></p>
+					</c:if>
+					<c:if test="${books.available}">
+					<p><strong>Está disponible para préstamo</strong></p>
+					</c:if>
+					<c:if test="${book.ubicacion}">
+					<p><strong>Ubicación: </strong><c:out value="${books.ubicacion}" /></p>
+					</c:if>
 					<hr>
 					<h3 class="text-center">Valoraciones</h3>
 					<c:forEach items="${resenas}" var="resena">

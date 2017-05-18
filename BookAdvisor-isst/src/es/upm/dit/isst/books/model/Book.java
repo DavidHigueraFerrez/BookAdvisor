@@ -28,8 +28,12 @@ public class Book implements Serializable {
 	private String isbn;
 	private String categoria;
 	private boolean promoted;
+	private boolean available;
+	private String urlparam;
+	private String price;
+	private String ubicacion;
 	
-	public Book(String title, String description, User editorial, String autor, String fecha, String portada, String categoria, String isbn, boolean promoted) {
+	public Book(String title, String description, User editorial, String autor, String fecha, String portada, String categoria, String isbn, boolean promoted, boolean available, String url, String price, String ubicacion) {
 		this.title = title;
 		this.autor = autor;
 		this.editorial = editorial;
@@ -39,6 +43,42 @@ public class Book implements Serializable {
 		this.categoria = categoria;
 		this.description = description;
 		this.promoted = promoted;
+		this.available = available;
+		this.ubicacion = ubicacion;
+		this.urlparam = url;
+		this.price = price;
+	}
+	
+	public String getUbicacion() {
+		return ubicacion;
+	}
+
+	public void seUbicacion(String ubicacion) {
+		this.ubicacion = ubicacion;
+	}
+	
+	public String getPrice() {
+		return price;
+	}
+
+	public void sePrice(String price) {
+		this.price = price;
+	}
+	
+	public String getUrl() {
+		return urlparam;
+	}
+
+	public void setUrl(String url) {
+		this.urlparam = url;
+	}
+	
+	public boolean getAvailable() {
+		return available;
+	}
+
+	public void setAvailable(boolean available) {
+		this.available = available;
 	}
 
 	public boolean getPromoted() {

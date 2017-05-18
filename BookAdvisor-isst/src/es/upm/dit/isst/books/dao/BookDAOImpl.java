@@ -39,10 +39,10 @@ public class BookDAOImpl implements BookDAO {
 	}
 
 	@Override
-	public void add(String title, String description, User editorial, String autor, String fecha, String portada, String categoria, String isbn, boolean promoted) {
+	public void add(String title, String description, User editorial, String autor, String fecha, String portada, String categoria, String isbn, boolean promoted,  boolean available, String url, String price, String ubicacion) {
 		synchronized (this) {
 			EntityManager em = EMFService.get().createEntityManager();
-			Book offer = new Book(title, description, editorial, autor, fecha, portada, categoria, isbn, promoted);
+			Book offer = new Book(title, description, editorial, autor, fecha, portada, categoria, isbn, promoted, available,  url,  price,  ubicacion);
 			em.persist(offer);
 			em.close();
 		}

@@ -23,6 +23,9 @@ import es.upm.dit.isst.books.dao.BookDAO;
 import es.upm.dit.isst.books.dao.BookDAOImpl;
 import es.upm.dit.isst.books.model.Book;
 import es.upm.dit.isst.resena.model.Resena;
+import es.upm.dit.isst.user.dao.UserDAO;
+import es.upm.dit.isst.user.dao.UserDAOImpl;
+import es.upm.dit.isst.user.model.AppUser;
 
 public class AddBook extends HttpServlet{
 	
@@ -45,15 +48,22 @@ public class AddBook extends HttpServlet{
 		System.out.println(dateFormat.format(date));
 		String fecha = dateFormat.format(date);
 		BookDAO dao = BookDAOImpl.getInstance();
-		dao.add(title, Description, editorial, autor, fecha, portada, category, isbn);
-		System.out.println("añadido libro con titulo y descrip:"+title+" "+Description+" y USer:"+editorial+ autor+ fecha+ portada+ category+ isbn);
+		UserDAO daouser = UserDAOImpl.getInstance();
+		AppUser usuarioon = daouser.getUser(editorial.getUserId());
+		boolean promoted;
+		if(usuarioon.getType() > 2){
+			promoted = true;
+		}			
+		else {promoted = false;}
+		dao.add(title, Description, editorial, autor, fecha, portada, category, isbn, promoted);
+		System.out.println("añadido libro con titulo y descrip:"+title+" "+Description+" y USer:"+editorial+ autor+ fecha+ portada+ category+ isbn+promoted);
 		PrintWriter out = resp.getWriter();
 		req.getSession().setAttribute("dialogo", "Oferta creada Correctamente!");
 
 		//resp.sendRedirect("/mandamail?title=" + title + "&description="
 		//		+ Description + "&price=" + price + "&service=" + service);
 
-		resp.sendRedirect("/main");
+		resp.sendRedirect("/books");
 	}
 	
 	private String checkNull(String s) {

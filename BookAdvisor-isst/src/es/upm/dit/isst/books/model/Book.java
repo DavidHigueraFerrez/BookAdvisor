@@ -27,8 +27,9 @@ public class Book implements Serializable {
 	private String fecha;
 	private String isbn;
 	private String categoria;
+	private boolean promoted;
 	
-	public Book(String title, String description, User editorial, String autor, String fecha, String portada, String categoria, String isbn) {
+	public Book(String title, String description, User editorial, String autor, String fecha, String portada, String categoria, String isbn, boolean promoted) {
 		this.title = title;
 		this.autor = autor;
 		this.editorial = editorial;
@@ -36,8 +37,18 @@ public class Book implements Serializable {
 		this.isbn = isbn;
 		this.portada = portada;
 		this.categoria = categoria;
+		this.description = description;
+		this.promoted = promoted;
 	}
 
+	public boolean getPromoted() {
+		return promoted;
+	}
+
+	public void setPromoted(boolean promoted) {
+		this.promoted = promoted;
+	}
+	
 	public String getCategoria() {
 		return categoria;
 	}

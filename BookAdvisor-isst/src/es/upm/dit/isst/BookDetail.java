@@ -18,6 +18,9 @@ import com.google.appengine.api.users.UserServiceFactory;
 import es.upm.dit.isst.books.dao.BookDAO;
 import es.upm.dit.isst.books.dao.BookDAOImpl;
 import es.upm.dit.isst.books.model.Book;
+import es.upm.dit.isst.resena.dao.ResenaDAO;
+import es.upm.dit.isst.resena.dao.ResenaDAOImpl;
+import es.upm.dit.isst.resena.model.Resena;
 
 public class BookDetail extends HttpServlet{
 	
@@ -28,20 +31,33 @@ public class BookDetail extends HttpServlet{
 		
 		UserService userService = UserServiceFactory.getUserService();
 		User user = userService.getCurrentUser();
-		
+		String id = req.getParameter("id");
 		BookDAO dao = BookDAOImpl.getInstance();
-		List<Book> offers = new ArrayList<Book>();
-		offers = dao.listAllBooks();
-		req.getSession().setAttribute("books",
-				new ArrayList<Book>(offers));
-		
+		Book books = dao.getBook(Long.parseLong(id));
+		System.out.println(books.getDescription());
+		req.getSession().setAttribute("books",books);
+		ResenaDAO daoresena = ResenaDAOImpl.getInstance();
+		List<Resena> resenas = new ArrayList<Resena>();
+		resenas = daoresena.listResenaByBook(Long.parseLong(id));
+		req.getSession().setAttribute("resenas", new ArrayList<Resena>(resenas));
+		double notamedia = 0;
+		double notaacumulada = 0;
+		for (int i=0; i< resenas.size() ; i++){
+			notaacumulada += resenas.get(i).getNota();
+			double denominador = i+1;
+			notamedia = notaacumulada/denominador;
+		}
+		System.out.println("Nota acumulada: "+notaacumulada);
+		System.out.println("Nota media: "+notamedia);
+		req.getSession().setAttribute("nota",notamedia);
+				
 	
 		if (user == null){
 			resp.sendRedirect("/"); //si no estoy logueado me devuelve al inicio
 			
 		} else{
 			
-			RequestDispatcher view = req.getRequestDispatcher("AllBooksDashboard.jsp");
+			RequestDispatcher view = req.getRequestDispatcher("BookDetail.jsp");
 	        view.forward(req, resp);
 			
 		}

@@ -2,11 +2,13 @@ package es.upm.dit.isst.resena.model;
 
 import java.io.Serializable;
 
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import com.google.appengine.api.users.User;
 
+@Entity
 public class Resena implements Serializable {
 
 

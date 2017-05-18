@@ -19,7 +19,7 @@ public interface BookDAO {
 	
 	List<Book> listAllBooks();
 
-	public void add (String title, String description, User editorial, String autor, String fecha, String portada, String categoria, String isbn);
+	public void add (String title, String description, User editorial, String autor, String fecha, String portada, String categoria, String isbn, boolean promoted);
 
 	public void update(long id, String title, String description, User user, int price, String service);
 

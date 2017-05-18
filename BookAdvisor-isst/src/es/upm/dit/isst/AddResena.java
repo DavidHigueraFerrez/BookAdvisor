@@ -49,7 +49,7 @@ public class AddResena extends HttpServlet{
 		//resp.sendRedirect("/mandamail?title=" + title + "&description="
 		//		+ Description + "&price=" + price + "&service=" + service);
 
-		resp.sendRedirect("/main");
+		resp.sendRedirect("/detallelibro?id="+book);
 	}
 	
 	private String checkNull(String s) {

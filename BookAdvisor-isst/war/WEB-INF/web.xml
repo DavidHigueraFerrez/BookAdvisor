@@ -21,12 +21,44 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
 		<url-pattern>/</url-pattern>
 	</servlet-mapping>
 	<servlet>
+		<servlet-name>UsersDashboard</servlet-name>
+		<servlet-class>es.upm.dit.isst.UsersDashboard</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>UsersDashboard</servlet-name>
+		<url-pattern>/manageusers</url-pattern>
+	</servlet-mapping>
+	<servlet>
 		<servlet-name>RemoveBook</servlet-name>
 		<servlet-class>es.upm.dit.isst.RemoveBook</servlet-class>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>RemoveBook</servlet-name>
 		<url-pattern>/eliminalibro</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>AddUser</servlet-name>
+		<servlet-class>es.upm.dit.isst.AddUser</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>AddUser</servlet-name>
+		<url-pattern>/nuevousuario</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>AddResena</servlet-name>
+		<servlet-class>es.upm.dit.isst.AddResena</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>AddResena</servlet-name>
+		<url-pattern>/valorarlibro</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>BookDetail</servlet-name>
+		<servlet-class>es.upm.dit.isst.BookDetail</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>BookDetail</servlet-name>
+		<url-pattern>/detallelibro</url-pattern>
 	</servlet-mapping>
 	<servlet>
 		<servlet-name>AllBooks</servlet-name>

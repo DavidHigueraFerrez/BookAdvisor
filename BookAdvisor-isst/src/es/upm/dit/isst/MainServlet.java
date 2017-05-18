@@ -15,6 +15,10 @@ import com.google.appengine.api.users.User;
 import com.google.appengine.api.users.UserService;
 import com.google.appengine.api.users.UserServiceFactory;
 
+import es.upm.dit.isst.user.dao.UserDAO;
+import es.upm.dit.isst.user.dao.UserDAOImpl;
+import es.upm.dit.isst.user.model.AppUser;
+
 /*import es.upm.dit.isst.labreserve.dao.AppUserDAO;
 import es.upm.dit.isst.labreserve.dao.AppUserDAOImpl;
 import es.upm.dit.isst.labreserve.dao.ConfigDAO;
@@ -37,13 +41,13 @@ public class MainServlet extends HttpServlet {
 		
 		/*ResourceDAO resourceDAO = ResourceDAOImpl.getInstance();
 		GroupDAO groupDAO = GroupDAOImpl.getInstance();
-		ConfigDAO configDAO = ConfigDAOImpl.getInstance();
-		AppUserDAO appUserDAO = AppUserDAOImpl.getInstance();*/
+		ConfigDAO configDAO = ConfigDAOImpl.getInstance();*/
+		UserDAO appUserDAO = UserDAOImpl.getInstance();
 
 		UserService userService = UserServiceFactory.getUserService();
 		User user = userService.getCurrentUser();
 
-		/*AppUser appUser = null;*/
+		AppUser appUser = null;
 		String urlLinktext = "Login";
 
 		
@@ -54,10 +58,13 @@ public class MainServlet extends HttpServlet {
 		if (user != null){
 		    url = userService.createLogoutURL(req.getRequestURI());
 		     urlLinktext = "Logout";
+		     appUser = appUserDAO.getUser(user.getUserId());
+		     System.out.println(user.getUserId());
+		     System.out.println(appUser);
 		    }
 
-		    /*resources = resourceDAO.listResources();
-			appUser = appUserDAO.getUser(user.getUserId());*/
+		    //resources = resourceDAO.listResources();
+		
 		
 		
 		/*List<Group> groups = groupDAO.listGroups();
@@ -107,13 +114,19 @@ public class MainServlet extends HttpServlet {
 			}
 			else {
 				if (user != null){
-				//if (user != null && appUser == null){
-				//	resp.sendRedirect("/main");
-				//} else {
-					//req.getSession().setAttribute("appUser", appUser);
-						
+					if (user != null && appUser == null){
+						req.getSession().setAttribute("mail", user.getEmail());
+						req.getSession().setAttribute("nickname", user.getNickname());
+						req.getSession().setAttribute("userId", user.getUserId());
+						RequestDispatcher view = req.getRequestDispatcher("setup.jsp");
+						view.forward(req, resp);
+					} else {
+					req.getSession().setAttribute("appUser", appUser);
 					RequestDispatcher view = req.getRequestDispatcher("menu.jsp");
 			        view.forward(req, resp);
+					}
+						
+					
 					
 					
 				}

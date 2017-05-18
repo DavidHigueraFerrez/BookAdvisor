@@ -38,6 +38,8 @@
 							<h4><c:out value="${book.title}" /></h4>
 							<h4><c:out value="${book.autor}" /></h4>
 							<hr>
+							<c:if test="${book.promoted}">
+							<img src="http://static.wixstatic.com/media/f574f9_cac5c38478c9422d9650e602da86eeea~mv2.png" style="width: 35%; position: absolute; left: 14%;"></c:if>	
 							<img src="${book.portada}" style="width:100%">
 							<br><br>
 							<span>

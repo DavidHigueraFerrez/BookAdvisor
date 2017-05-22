@@ -61,14 +61,16 @@ public class AddBook extends HttpServlet{
 		else {promoted = false;}
 		boolean available = false;
 		System.out.println(availablenum);
-		int available1 = Integer.parseInt(availablenum);
-		if (available1 == 1){
-			available = true;
+		if (availablenum != null){
+			int available1 = Integer.parseInt(availablenum);
+			if (available1 == 1){
+				available = true;
+			}
+			if(available1 == 0) {
+				available = false;
+			}	
 		}
-		if(available1 == 0) {
-			available = false;
-		}
-		dao.add(title, Description, editorial, autor, fecha, portada, category, isbn, promoted, available, urlparam, price, ubicacion);
+		dao.add(title, Description, editorial, autor, fecha, portada, category, isbn, promoted, available, urlparam, price, "Ubicación: "+ubicacion);
 		System.out.println("añadido libro con titulo y descrip:"+title+" "+Description+" y USer:"+editorial+ autor+ fecha+ portada+ category+ isbn+promoted+available+ urlparam+ price+ubicacion);
 		PrintWriter out = resp.getWriter();
 		req.getSession().setAttribute("dialogo", "Oferta creada Correctamente!");

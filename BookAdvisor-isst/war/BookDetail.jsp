@@ -47,14 +47,11 @@
 					<c:if test="${books.promoted}">
 					<p><strong>Precio de venta: </strong><c:out value="${books.price}" /></p>
 					<p><a href="<c:url value="${books.url}"/>"><strong>Link de compra </strong></a></p>
-					<p><strong>Ubicación: </strong><c:out value="${books.ubicacion}" /></p>
 					</c:if>
 					<c:if test="${books.available}">
 					<p><strong>Está disponible para préstamo</strong></p>
 					</c:if>
-					<c:if test="${book.ubicacion}">
-					<p><strong>Ubicación: </strong><c:out value="${books.ubicacion}" /></p>
-					</c:if>
+					<p><c:out value="${books.ubicacion}" /></p>
 					<hr>
 					<h3 class="text-center">Valoraciones</h3>
 					<c:forEach items="${resenas}" var="resena">
